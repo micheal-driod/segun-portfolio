@@ -87,7 +87,7 @@ export default function PortfolioWebsite() {
           <div>
             <div className="bg-white/5 border border-white/10 rounded-3xl p-8 shadow-2xl">
               <img
-                src="\images\profile.jpg"
+                src="\images\banner.jpg"
                 alt="Developer Workspace"
                 className="rounded-2xl w-full h-[400px] object-cover"
               />
