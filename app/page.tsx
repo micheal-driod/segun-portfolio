@@ -1,143 +1,88 @@
+'use client';
+
+import Image from 'next/image';
+import { useState } from 'react';
+
 const projects = [
   {
-    number: '01',
-    kind: 'PRODUCT SYSTEM / FINTECH',
-    title: 'IBARFFS Cooperative',
-    statement: 'A banking-style cooperative platform built around members, savings, shares, loans and a transparent transaction ledger.',
-    image: '/images/admin.png',
-    tags: ['Node.js', 'Express', 'Prisma', 'PostgreSQL', 'React', 'Flutter'],
-    result: 'Admin operations + member experience unified in one system.',
+    id: '01', title: 'Serenity Touch NYC', kicker: 'SERVICE BUSINESS / CONVERSION',
+    description: 'A premium web experience for a New York wellness brand — built to turn social traffic into confident enquiries and bookings.',
+    image: '/images/admin.png', tags: ['Next.js', 'UX', 'Responsive'], size: 'wide',
   },
   {
-    number: '02',
-    kind: 'SERVICE BUSINESS / CONVERSION',
-    title: 'Serenity Touch NYC',
-    statement: 'A polished service website designed to turn social traffic into confident booking enquiries for a New York massage business.',
-    image: '/Screenshot (104).png',
-    tags: ['Next.js', 'Responsive UI', 'Conversion UX', 'Vercel'],
-    result: 'Clear offer → trust → booking path, with a premium visual direction.',
+    id: '02', title: 'IBARFFS Cooperative', kicker: 'FINTECH / OPERATIONS PLATFORM',
+    description: 'A banking-style cooperative ecosystem for savings, shares, loans, repayments, ledgers and approvals.',
+    image: '/Screenshot (104).png', tags: ['Node.js', 'Prisma', 'PostgreSQL'], size: 'tall',
   },
   {
-    number: '03',
-    kind: 'EDTECH / COMMUNITY PRODUCT',
-    title: 'African Student Super App',
-    statement: 'A student-focused digital experience exploring campus discovery, peer services, communication and everyday student utility.',
-    image: '/Screenshot (102).png',
-    tags: ['Product UI', 'Web App', 'Mobile UX', 'Responsive Design'],
-    result: 'A visual system shaped around young users and fast interactions.',
+    id: '03', title: "Africa's Student Super App", kicker: 'MOBILE PRODUCT / CAMPUS',
+    description: 'A student-first product concept connecting community, discovery, campus commerce and useful everyday tools.',
+    image: '/images/admin.png', tags: ['Product UI', 'Mobile UX', 'Flutter'], size: 'normal',
   },
   {
-    number: '04',
-    kind: 'WEB INTERFACE / DASHBOARD',
-    title: 'Trading & Finance UI',
-    statement: 'Clean dashboard and marketing-interface work for finance-oriented digital products, focused on hierarchy, clarity and action.',
-    image: '/Screenshot (5).png',
-    tags: ['Frontend', 'Dashboard UI', 'UX', 'Responsive Web'],
-    result: 'Information-heavy screens made easier to scan and understand.',
+    id: '04', title: 'Trading & Affiliate Interfaces', kicker: 'DASHBOARD / FINANCIAL UI',
+    description: 'High-clarity interfaces designed around dense information, quick decisions and a trustworthy product feel.',
+    image: '/Screenshot (5).png', tags: ['Dashboard', 'UX', 'Web'], size: 'normal',
   },
 ];
 
-const capabilities = [
-  ['01', 'Web Applications', 'Next.js, React, PHP and Node.js systems that feel fast, intentional and production-ready.'],
-  ['02', 'Mobile Products', 'Flutter applications with authentication, dashboards, APIs and practical user flows.'],
-  ['03', 'Business Systems', 'Admin panels, member portals, ledgers, workflows, approvals and data-driven operations.'],
-  ['04', 'Rescue & Deploy', 'Debugging, database integration, hosting, production builds and deployment troubleshooting.'],
+const services = [
+  { no: '01', title: 'Web experiences', text: 'Marketing sites, landing pages and product interfaces that make a business look credible before the first conversation.' },
+  { no: '02', title: 'Business systems', text: 'Dashboards, APIs, authentication, workflows and databases that turn manual operations into software.' },
+  { no: '03', title: 'Mobile products', text: 'Flutter applications with thoughtful UX, connected backends and a structure that can grow with the product.' },
+  { no: '04', title: 'Build & rescue', text: 'Existing project fixes, deployment, database and integration work when a promising build needs a reliable technical hand.' },
 ];
 
-const stack = ['NEXT.JS', 'REACT', 'NODE.JS', 'PHP', 'FLUTTER', 'PRISMA', 'POSTGRESQL', 'MYSQL', 'SUPABASE', 'VERCEL'];
+const stack = ['Next.js', 'React', 'Node.js', 'TypeScript', 'PHP', 'Prisma', 'PostgreSQL', 'Flutter', 'Supabase', 'Git'];
 
 export default function PortfolioWebsite() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const closeMenu = () => setMenuOpen(false);
+
   return (
-    <main>
+    <main className="site">
       <div className="noise" aria-hidden="true" />
-      <aside className="side-rail">
-        <a className="rail-mark" href="#top" aria-label="Back to top">SM<span>•</span></a>
-        <span className="rail-line" />
-        <span className="rail-copy">DIGITAL BUILDER / 2026</span>
-      </aside>
-
-      <div className="site-shell" id="top">
-        <nav className="nav">
-          <a className="wordmark" href="#top">SEGUN<span>_</span>ADEGBITE</a>
-          <div className="nav-links"><a href="#work">Work</a><a href="#capabilities">Capabilities</a><a href="#about">About</a></div>
-          <a className="nav-cta" href="mailto:adegbitesegunmic02@gmail.com">Start a project <span>↗</span></a>
+      <header className="header">
+        <a className="logo" href="#top" onClick={closeMenu} aria-label="Segun Adegbite home"><span className="logo-dot" /><span>SEGUN / ADEGBITE</span></a>
+        <button className="menu-toggle" type="button" onClick={() => setMenuOpen(!menuOpen)} aria-expanded={menuOpen} aria-label="Toggle menu">{menuOpen ? 'CLOSE' : 'MENU'}</button>
+        <nav className={`header-nav ${menuOpen ? 'is-open' : ''}`}>
+          <a href="#work" onClick={closeMenu}>Work <span>01</span></a><a href="#services" onClick={closeMenu}>Capabilities <span>02</span></a><a href="#about" onClick={closeMenu}>Approach <span>03</span></a><a className="header-contact" href="mailto:adegbitesegunmic02@gmail.com" onClick={closeMenu}>Let&apos;s talk ↗</a>
         </nav>
+      </header>
 
-        <section className="hero" aria-labelledby="hero-title">
-          <div className="hero-index">/ 001 — AVAILABLE WORLDWIDE</div>
-          <div className="hero-copy">
-            <p className="eyebrow">FULL-STACK DEVELOPER <span>×</span> PRODUCT BUILDER</p>
-            <h1 id="hero-title">I build digital<br /><em>systems</em> that<br />mean business.</h1>
-            <p className="hero-intro">From a cooperative banking platform to a New York service brand, I turn rough ideas into usable, credible products — websites, dashboards, mobile apps and the backend underneath them.</p>
-            <div className="hero-actions">
-              <a className="button button-solid" href="#work">Explore selected work <span>↓</span></a>
-              <a className="button button-ghost" href="mailto:adegbitesegunmic02@gmail.com">adegbitesegunmic02@gmail.com</a>
-            </div>
+      <section className="hero" id="top">
+        <div className="hero-grid-mark" aria-hidden="true" />
+        <div className="hero-left">
+          <div className="status"><span className="pulse" /> AVAILABLE FOR SELECT PROJECTS <b>2026</b></div>
+          <p className="hero-index">01 / INDEPENDENT DEVELOPER</p>
+          <h1>Software with a <span>human</span> edge.</h1>
+          <p className="hero-lede">I design and build websites, mobile products and business systems for people who need their ideas to work in the real world.</p>
+          <div className="hero-actions"><a className="primary-btn" href="#work">See the work <span>↘</span></a><a className="quiet-link" href="mailto:adegbitesegunmic02@gmail.com">Start a conversation <span>↗</span></a></div>
+          <div className="hero-proof"><div><strong>04+</strong><span>YEARS BUILDING</span></div><div><strong>10+</strong><span>PRODUCTS / SYSTEMS</span></div><div><strong>WW</strong><span>REMOTE COLLABORATION</span></div></div>
+        </div>
+        <div className="hero-right">
+          <div className="portrait-frame">
+            <div className="portrait-top"><span>PROFILE / 2026</span><span>IBADAN → WORLD</span></div>
+            <Image src="/images/profile.jpg" alt="Segun Adegbite, full-stack developer" width={1086} height={1448} priority className="portrait" />
+            <div className="portrait-overlay" /><div className="portrait-name">SEGUN<br /><em>ADEGBITE</em></div><div className="portrait-role">FULL-STACK<br />DEVELOPER</div>
           </div>
-          <div className="hero-visual">
-            <div className="portrait-frame">
-              <img src="/ChatGPT Image Jul 24, 2026, 06_23_43 PM.png" alt="Segun Adegbite" />
-              <div className="portrait-label"><span>SEGUN ADEGBITE</span><span>DEV / DESIGN / SYSTEMS</span></div>
-            </div>
-            <div className="orbit-card orbit-one"><span>◎</span> SHIPS<br />REAL PRODUCTS</div>
-            <div className="orbit-card orbit-two">LAGOS → WORLD<br /><strong>REMOTE READY</strong></div>
-          </div>
-        </section>
+          <div className="orbit orbit-a" aria-hidden="true" /><div className="orbit orbit-b" aria-hidden="true" />
+          <div className="location-card"><span>BASED IN</span><strong>IBADAN, NG</strong><small>WORKING WORLDWIDE</small></div><div className="year-card">26<span>º</span></div>
+        </div>
+      </section>
 
-        <div className="ticker" aria-label="Technology stack"><div className="ticker-track">{[...stack, ...stack].map((item, i) => <span key={`${item}-${i}`}>{item}<b>✳</b></span>)}</div></div>
+      <section className="marquee" aria-label="Skills"><div className="marquee-track">{[...stack, ...stack].map((item, i) => <span key={`${item}-${i}`}>{item}<b>✳</b></span>)}</div></section>
 
-        <section className="proof-strip">
-          <div><small>01</small><strong>END-TO-END</strong><span>UI → API → DATABASE → DEPLOY</span></div>
-          <div><small>02</small><strong>REAL-WORLD</strong><span>BUILT FOR OPERATIONS, NOT JUST MOCKUPS</span></div>
-          <div><small>03</small><strong>REMOTE-FIRST</strong><span>CLEAR COMMUNICATION / GLOBAL CLIENTS</span></div>
-        </section>
+      <section className="work section" id="work">
+        <div className="section-intro"><div><span className="label">02 / SELECTED WORK</span><h2>Proof over<br /><i>promises.</i></h2></div><p>Recent work across service businesses, fintech, student products and operational software. Different industries. Same obsession with clarity.</p></div>
+        <div className="project-grid">{projects.map((project) => <article className={`project-card ${project.size}`} key={project.id}><div className="project-visual"><Image src={project.image} alt={`${project.title} project preview`} width={1920} height={1080} /><div className="project-number">{project.id}</div><div className="project-corner">VIEW ↗</div></div><div className="project-details"><div><span className="project-kicker">{project.kicker}</span><h3>{project.title}</h3></div><p>{project.description}</p><div className="project-tags">{project.tags.map(tag => <span key={tag}>{tag}</span>)}</div></div></article>)}</div>
+      </section>
 
-        <section className="work-section" id="work">
-          <div className="section-head">
-            <div><span className="section-kicker">/ SELECTED WORK</span><h2>Things I&apos;ve<br /><em>actually built.</em></h2></div>
-            <p>Not a gallery of pretty screens. These are examples of how I approach products: understand the job, shape the experience, connect the data, then make the whole thing feel finished.</p>
-          </div>
-          <div className="project-stack">
-            {projects.map((project) => (
-              <article className="project" key={project.number}>
-                <div className="project-meta"><span>{project.number}</span><span>{project.kind}</span></div>
-                <div className="project-image"><img src={project.image} alt={`${project.title} project preview`} /><span className="image-corner">VIEW / {project.number}</span></div>
-                <div className="project-info">
-                  <h3>{project.title}</h3><p>{project.statement}</p>
-                  <div className="tags">{project.tags.map(tag => <span key={tag}>{tag}</span>)}</div>
-                  <div className="project-result"><small>BUILD NOTE</small><span>{project.result}</span></div>
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
+      <section className="manifesto" id="about"><div className="manifesto-top"><span className="label">03 / THE DIFFERENCE</span><span>DESIGN + CODE + DELIVERY</span></div><div className="manifesto-main"><h2>I don&apos;t just make<br /><em>things look good.</em></h2><div className="manifesto-copy"><p>The best software feels obvious. A customer knows where to go. A team knows what to do next. A business owner can finally see what is happening.</p><p>That is the standard I bring to a project — thoughtful interface, dependable engineering and a finish that feels intentional.</p><strong>One developer. Fewer handoffs. Better momentum.</strong></div></div><div className="manifesto-foot"><span>CRAFT / 01</span><span>CLARITY / 02</span><span>RELIABILITY / 03</span><span>OUTCOME / 04</span></div></section>
 
-        <section className="capabilities" id="capabilities">
-          <div className="section-head compact"><div><span className="section-kicker">/ CAPABILITIES</span><h2>More than<br /><em>just code.</em></h2></div><p>I sit comfortably between product thinking and implementation. That means fewer hand-offs, faster decisions and systems that make sense beyond the homepage.</p></div>
-          <div className="cap-grid">{capabilities.map(([num, title, desc]) => <div className="cap" key={num}><span>{num}</span><h3>{title}</h3><p>{desc}</p><i>↗</i></div>)}</div>
-        </section>
+      <section className="services section" id="services"><div className="section-intro services-intro"><div><span className="label">04 / CAPABILITIES</span><h2>From first<br /><i>idea to live.</i></h2></div><p>I can join at the beginning, take over a half-built project or help get something already working to a more professional level.</p></div><div className="service-list">{services.map(service => <article className="service-row" key={service.no}><span className="service-no">{service.no}</span><h3>{service.title}</h3><p>{service.text}</p><span className="service-arrow">↗</span></article>)}</div><div className="stack-panel"><span className="label">THE TOOLKIT</span><div>{stack.map(item => <span key={item}>{item}</span>)}</div></div></section>
 
-        <section className="about" id="about">
-          <div className="about-stamp">BUILT<br />TO BE<br /><span>USEFUL.</span></div>
-          <div className="about-copy"><span className="section-kicker">/ A LITTLE CONTEXT</span><h2>Technical enough<br />to build it. <em>Curious<br />enough to build it right.</em></h2><p>I&apos;m Segun Adegbite, a developer focused on practical digital products. My work spans business management systems, mobile applications, responsive websites, dashboards and the infrastructure that connects them.</p><p>I care about the details clients notice and the ones they don&apos;t: responsive layouts, clean data flows, useful admin tools, maintainable code and a deployment that actually works.</p><div className="about-signature">SEGUN / FULL-STACK DEVELOPER</div></div>
-          <div className="about-photo"><img src="/images/profile.jpg" alt="Segun Adegbite profile" /><span>BASED IN NIGERIA<br />WORKING WORLDWIDE</span></div>
-        </section>
-
-        <section className="process">
-          <div className="section-head compact"><div><span className="section-kicker">/ HOW I WORK</span><h2>A calm process<br /><em>for serious work.</em></h2></div></div>
-          <div className="process-line"><div><b>01</b><strong>UNDERSTAND</strong><p>Goals, users, constraints and what success actually means.</p></div><div><b>02</b><strong>SHAPE</strong><p>Structure the experience before adding unnecessary complexity.</p></div><div><b>03</b><strong>BUILD</strong><p>Connect polished interfaces to real data, APIs and workflows.</p></div><div><b>04</b><strong>SHIP</strong><p>Test, fix, deploy and leave you with something usable.</p></div></div>
-        </section>
-
-        <section className="contact" id="contact">
-          <div className="contact-top"><span>/ 004 — LET&apos;S TALK</span><span>OPEN TO REMOTE / CONTRACT / FREELANCE</span></div>
-          <h2>Have a product<br /><em>worth building?</em></h2>
-          <p>Tell me what you&apos;re trying to build, fix or improve. I&apos;ll tell you what I think the smartest next move is.</p>
-          <a className="contact-email" href="mailto:adegbitesegunmic02@gmail.com">adegbitesegunmic02@gmail.com <span>↗</span></a>
-          <div className="contact-links"><a href="https://github.com/micheal-driod/micheal-driod" target="_blank" rel="noreferrer">GitHub ↗</a><a href="https://www.linkedin.com/in/adegbite-segun-59517416a/" target="_blank" rel="noreferrer">LinkedIn ↗</a><a href="https://www.fiverr.com/sellers/liteerupt/" target="_blank" rel="noreferrer">Fiverr ↗</a><a href="https://wa.me/2348134607134" target="_blank" rel="noreferrer">WhatsApp ↗</a></div>
-        </section>
-
-        <footer><span>SEGUN_ADEGBITE / DIGITAL BUILDER</span><span>© 2026 ALL RIGHTS RESERVED</span><a href="#top">BACK TO TOP ↑</a></footer>
-      </div>
+      <section className="final-cta"><div className="cta-ring" aria-hidden="true">LET&apos;S BUILD · LET&apos;S BUILD · LET&apos;S BUILD · </div><span className="label">05 / YOUR NEXT PROJECT</span><h2>Have a problem<br />worth <em>building.</em></h2><p>Whether you need a website that converts, a system that saves your team hours, or a developer to finish what you started — let&apos;s talk.</p><div className="cta-actions"><a className="cta-main" href="mailto:adegbitesegunmic02@gmail.com">adegbitesegunmic02@gmail.com <span>↗</span></a><a className="cta-social" href="https://www.linkedin.com/in/adegbite-segun-59517416a/" target="_blank" rel="noreferrer">LinkedIn ↗</a><a className="cta-social" href="https://github.com/micheal-driod" target="_blank" rel="noreferrer">GitHub ↗</a></div><footer><span>SEGUN ADEGBITE © 2026</span><span>IBADAN, NIGERIA / AVAILABLE WORLDWIDE</span><span>NEXT.JS · NODE · FLUTTER · PHP</span></footer></section>
     </main>
   );
 }
